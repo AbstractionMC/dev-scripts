@@ -12,12 +12,12 @@ allprojects {
 	apply plugin: "signing"
 
 	version = "${project.mod_version}+${project.minecraft_version}"
-  group = rootProject.maven_group
-  accessWidener = project.access_widener  name = project.archives_base_name
-  url = project.url
+  	group = rootProject.maven_group
+  	accessWidener = project.access_widener  name = project.archives_base_name
+ 	url = project.url
 
 	if (System.getenv("PUBLISH_TYPE") == "SNAPSHOT") {
-    uniqueId = generateRandomHexId(5)
+    		uniqueId = generateRandomHexId(5)
 		version = "${version}-${uniqueId}-SNAPSHOT"
 	}
 
@@ -43,7 +43,7 @@ allprojects {
 
 		// (FabricAPI) modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // (Nixienaut) include (implementation(annotationProcessor("net.rotgruengelb:nixienaut:${project.nixienaut_version}")))
+    		// (Nixienaut) include (implementation(annotationProcessor("net.rotgruengelb:nixienaut:${project.nixienaut_version}")))
 	}
 
 	processResources {
@@ -62,9 +62,9 @@ allprojects {
 
 	loom {
 		splitEnvironmentSourceSets()
-    if (accessWidener != "none") {
+    		if (accessWidener != "none") {
 		  accessWidenerPath = file(accessWidener)
-    }
+    		}
 
 		mods {
 			"$" {
@@ -140,16 +140,16 @@ allprojects {
 					password = System.getenv("MAVEN1_PASSWORD")
 				}
 			}
-      if (System.getenv("MAVEN2_NAME") != "none") {
-        maven {
-				  name = System.getenv("MAVEN2_NAME")
-				  url = System.getenv("MAVEN2_URL")
-				  credentials {
-					  username = System.getenv("MAVEN2_USERNAME")
-					  password = System.getenv("MAVEN2_PASSWORD")
-				  }
-			  }
-      }
+      			if (System.getenv("MAVEN2_NAME") != "none") {
+       				maven {
+					name = System.getenv("MAVEN2_NAME")
+				  	url = System.getenv("MAVEN2_URL")
+				  	credentials {
+						username = System.getenv("MAVEN2_USERNAME")
+						password = System.getenv("MAVEN2_PASSWORD")
+					}
+				}
+      			}
 		}
 	}
 
